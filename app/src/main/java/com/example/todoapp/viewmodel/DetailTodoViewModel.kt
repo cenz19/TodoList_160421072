@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import com.example.todoapp.model.Todo
 import com.example.todoapp.model.TodoDao
+import com.example.todoapp.model.TodoDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -17,7 +18,7 @@ class DetailTodoViewModel(application: Application)
 
     fun addTodo(list:List<Todo>) {
         launch {
-            val db = TodoDao.TodoDatabase.buildDatabase(
+            val db = TodoDatabase.buildDatabase(
                 getApplication()
             )
             db.todoDao().insertAll(*list.toTypedArray())
